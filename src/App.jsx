@@ -29,6 +29,13 @@ export default function App() {
       });
     });
   }
+
+  function deleteTodo(id) {
+    setTodos((currentTodos) => {
+      return currentTodos.filter((todo) => todo.id !== id);
+    });
+  }
+
   return (
     <>
       <form onSubmit={handleSubmit} className="new-item-form">
@@ -46,6 +53,7 @@ export default function App() {
 
       <h1 className="header">Todo</h1>
       <ul className="list">
+        {todos.length === 0 && "No to-dos"}
         {todos.map((todo) => {
           return (
             <li key={todo.id}>
@@ -57,7 +65,13 @@ export default function App() {
                 />
                 {todo.title}
               </label>
-              <button className="btn btn-danger">x</button>
+              <button
+                // NOT : onClick={deleteTodo(todo.id)} => ONLY GIVES THE RETURN VALUE OF IT
+                onClick={() => deleteTodo(todo.id)}
+                className="btn btn-danger"
+              >
+                x
+              </button>
             </li>
           );
         })}
