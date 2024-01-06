@@ -36,7 +36,7 @@ export default function App() {
     <>
       <NewTodoForm onSubmit={addTodo} />
       <h1 className="header">Todo</h1>
-      <TodoList />
+      <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
     </>
   );
 }
